@@ -3,12 +3,13 @@ import mysql.connector
 import simplejson as json
 from flask import Flask, Response
 from flask import render_template
+from spotify_api import *
 
 app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return render_template('index.html', hello='Hello world!!')
+    return render_template('index.html', hello=printSpotify())
 
 
 if __name__ == '__main__':
