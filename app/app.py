@@ -7,9 +7,11 @@ from spotify_api import *
 
 app = Flask(__name__)
 
+artist_id = '4YRxDV8wJFPHPTeXepOstw'
+
 @app.route('/')
 def index():
-    return render_template('index.html', hello=get_access_token())
+    return render_template('index.html', hello=get_song_info(artist_id))
 
 
 if __name__ == '__main__':
