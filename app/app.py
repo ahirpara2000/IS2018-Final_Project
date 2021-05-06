@@ -9,7 +9,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return render_template('index.html', hello=printSpotify())
+    return render_template('index.html', hello=get_access_token())
 
 
 if __name__ == '__main__':
