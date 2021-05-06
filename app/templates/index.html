@@ -1,8 +1,23 @@
 <html>
     <head>
-
+        <link rel="stylesheet" type="text/css" href="/static/style.css" media="screen"/>
     </head>
     <body>
-        {{ hello }}
+        <div class="songInfoWrap">
+            {% for song in song_info %}
+                <div class="box">
+                    <img  id="image{{i}}" style="border-radius: 25px" src={{song[3]}} width="300" height="300">
+                    <br>
+                    <div class="fontA"><b id="name{{i}}">{{song[1]}}</b></div>
+                    <audio controls><source id="audio{{i}}" src={{song[2]}} type="audio/ogg"></audio>
+                    <br><br>
+                    <div class="fontb" id="name_list{{i}}">
+                        By: {{ song[0] |join(', ') }}
+                    </div>
+                    <br>
+                    <br>
+                </div>
+            {% endfor %}
+        </div>
     </body>
 </html>

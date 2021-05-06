@@ -1,4 +1,3 @@
-from typing import List, Dict
 import mysql.connector
 import simplejson as json
 from flask import Flask, Response
@@ -11,7 +10,7 @@ artist_id = '4YRxDV8wJFPHPTeXepOstw'
 
 @app.route('/')
 def index():
-    return render_template('index.html', hello=get_song_info(artist_id))
+    return render_template('index.html', song_info=get_song_info(artist_id))
 
 
 if __name__ == '__main__':
