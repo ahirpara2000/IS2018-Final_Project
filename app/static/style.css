@@ -2,10 +2,16 @@ body {
     margin: 0px;
 }
 
+.bg {
+    background: radial-gradient(56.4% 56.4% at 50% 50%, #131650 0%, #070820 99.99%);
+}
+
 .songInfoWrap {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
 }
+
+
 
 .box {
 
