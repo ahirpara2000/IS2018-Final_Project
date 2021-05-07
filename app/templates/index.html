@@ -7,42 +7,73 @@
 	</head>
 	<body>
 		<div id="bg"></div>
-        <br><br>
-        <div id="lyrics_bg">
-            <!-- creates an input box and submit button for user input -->
-            <div class="ibox">
-                <form action="{{ url_for("artist_search")}}" method="post" autocomplete="off">
-                    <input type="text" id="artistname" name="a_name" placeholder="Search Artist ...">
-                <input type="submit" value="Submit">
-                </form>
-            </div>
+		<center>
+			<br><br>
+			<div id="lyrics_bg">
+				<!-- creates an input box and submit button for user input -->
+				<div class="ibox">
+					<form action="{{ url_for("artist_search")}}" method="post" autocomplete="off">
+						<input type="text" id="artistname" name="a_name" placeholder="Search Artist ...">
+					<input type="submit" value="Submit">
+					</form>
+				</div>
 
-            <!-- Display title, and in case of error display an error message -->
-            <br>
-            {%if err_msg%}
-                <h style="font-size: 20px; color: #ff0000">No results found !!!</h>
-            {%endif%}
-            <br><br><br>
-            <h id="artist_name" style="font-size: 75px">Top tracks of {{artist_name}}</h>
+				<!-- Display title, and in case of error display an error message -->
+				<br>
+				{%if err_msg%}
+					<h style="font-size: 20px; color: red">No results found !!!</h>
+				{%endif%}
+				<br><br><br>
+				<h id="artist_name" style="font-size: 75px">Top tracks of {{artist_name}}</h>
 
-            <!-- Creates and populate a grid format for music info -->
-            <div class="wrap">
-                {%for song in song_info%}
-                    <div class="tabf" id="tabf{{i}}">
-                        <img  id="image{{i}}" style="border-radius: 25px" src={{song[3]}} width="300" height="300">
-                        <br>
-                        <div class="fontA"><b id="name{{i}}">{{song[1]}}</b></div>
-                        <audio controls><source id="audio{{i}}" src={{song[2]}} type="audio/ogg"></audio>
-                        <br><br>
-                        <div class="fontb" id="name_list{{i}}">
-                            By:
-                            {{ song[0]|join(', ') }}
-                        </div>
-                        <br>
-                        <br>
-                    </div>
-                {%endfor%}
-            </div>
-        </div>
+				<!-- Creates and populate a grid format for music info -->
+				<div class="wrap">
+					{%for i in range(0, len)%}
+						<div class="tabf" id="tabf{{i}}">
+							<img  id="image{{i}}" style="border-radius: 25px" src={{song_info[i][3]}} width="300" height="300">
+							<br>
+							<div class="fontA"><b id="name{{i}}">{{song_info[i][1]}}</b></div>
+							<audio controls><source id="audio{{i}}" src={{song_info[i][2]}} type="audio/ogg"></audio>
+							<br><br>
+							{%for e in range(0, len2)%}
+								{%if e == 0%}
+									<div class="fontb" id="name_list{{i}}">
+									By:
+									{{ song_info[i][e]|join(', ') }}
+									</div>
+								{%endif%}
+							{%endfor%}
+							<br>
+							<br>
+						</div>
+					{%endfor%}
+				</div>
+			</div>
+			<div class="lyrics_box" id="lyrics_box">
+				<span class="close" id="close">&times;</span>
+				<br>
+				<div class="box3"><pre id="text" style="text-align:left font-size: 13px"></pre></div>
+				<br>
+				<div class="box2"><img id="image_box" style="border-radius: 25px" src="" width="300" height="300"></div>
+				<br>
+				<div class="box1"><h id="song_box" style="font-size:35px"></h></div>
+				<br>
+				<div class="box4"><span id="artist_box"></span></div>
+				<br>
+				<div class="box5"><audio controls id="control"><source id="audio_box" src="" type="audio/ogg"></audio></div>
+				<br>
+			</div>
+			<div id="loader">
+				<img src="{{url_for('static', filename='images/loader.gif')}}" style="border-radius: 25px" width="80" height="80"></img>
+			</div>
+
+			<div class="err_box" id="err_box">
+				<span class="close" id="close_err">&times;</span>
+				<b id="err_msg" style="font-size:40px">
+					Please disable grammarly addon to see the lyrics.
+				</b>
+			</div>
+
+			</center>
 	</body>
 </html>
