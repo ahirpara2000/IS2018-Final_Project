@@ -119,3 +119,69 @@ def get_artist_id(name):
     except:
         results = response.status_code
         return results
+
+
+def get_lyrics(song_title, artist_name):
+    base_url = "http://api.genius.com"
+
+    token = os.getenv('genius_token')
+
+    request_header = {
+        "Authorization": f"Bearer {token}"
+    }
+
+    url_ext = base_url + "/search"
+
+    query_param = urlencode({
+        "q": song_title
+    })
+
+    url_lookup = f"{url_ext}?{query_param}"
+
+    response = requests.get(url_lookup, headers=request_header)
+
+    result = response.json()
+
+    for hit in result["response"]["hits"]:
+        if hit["result"]["primary_artist"]["name"] == artist_name:
+            song_info = hit["result"]["url"]
+            break
+
+    try:
+        page_url = song_info
+    except:
+        for i in range(len(song_title)):
+            title = song_title
+            if song_title[i] == '[' or song_title[i] == '(' or song_title[i] == '-':
+                title = song_title[:i]
+                break
+
+        query_param = urlencode({
+            "q": title
+        })
+        url_lookup = f"{url_ext}?{query_param}"
+        response = requests.get(url_lookup, headers=request_header)
+
+        result = response.json()
+
+        for hit in result["response"]["hits"]:
+            if hit["result"]["primary_artist"]["name"] == artist_name:
+                song_info = hit
+                break
+        else:
+            song_info = result["response"]["hits"][0]
+
+        page_url = song_info["result"]["url"]
+
+    page = requests.get(page_url)
+
+    html = BeautifulSoup(page.text, "html.parser")
+
+    # remove script tags that they put in the middle of the lyrics
+    for h in html('script'):
+        h.extract()
+        # at least Genius is nice and has a tag called 'lyrics'!
+    lyrics = html.find("div", class_="lyrics").get_text()
+    lyrics.replace('\n', ' ')
+
+    return [page_url, lyrics]
