@@ -1,0 +1,54 @@
+body {
+    font-family: Calibri;
+}
+
+.loginWrap {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    color: white;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.loginBox {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 3em 12em;
+    border-radius: 36px;
+    background-color: rgb(18 20 30);
+    box-shadow: 0 2.8px 2.2px rgb(0 0 0 / 13%), 0 6.7px 5.3px rgb(0 0 0 / 15%), 0 12.5px 10px rgb(0 0 0 / 16%), 0 22.3px 17.9px rgb(0 0 0 / 17%), 0 41.8px 33.4px rgb(0 0 0 / 19%), 0 100px 80px rgb(0 0 0 / 22%);
+    gap: 2em;
+}
+
+.loginBox h1 {
+    font-size: 3rem;
+}
+
+.loginBox h4 {
+    font-size: 1rem;
+}
+
+.loginBox a {
+    padding: 1em 3em;
+    font-variant: all-petite-caps;
+    background: white;
+    border: none;
+    border-radius: 50px;
+    font-family: sans-serif;
+    font-size: 20px;
+    color: #51308e;
+    letter-spacing: 4px;
+    transition: 100ms ease-in-out;
+    text-decoration: none;
+}
+
+.loginBox a:hover,
+.loginBox a:focus {
+    background-color: lightgrey;
+}

@@ -1,18 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Flask OAuth tutorial</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/static/style.css" media="screen"/>
+    <link rel="stylesheet" type="text/css" href="/static/login.css" media="screen"/>
+    <title>Spotipy</title>
 </head>
 <body>
-  <h1>Flask OAuth Tutorial</h1>
-  <div class="oauth-box">
-    <div id="oauth-google">
-      <a href="{{ url_for('login') }}">
-        Login
-      </a>
+    <div id="bg"></div>
+    <div class="loginWrap">
+        <div class="loginBox">
+            <h1>Welcome to Spotipy</h1>
+            <h4>Please login to continue</h4>
+            <div class="oauth-box">
+            <div id="oauth-google">
+              <a href="{{ url_for('login') }}">
+                Login
+              </a>
+            </div>
+            </div>
+        </div>
     </div>
-  </div>
 </body>
 </html>

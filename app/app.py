@@ -30,9 +30,10 @@ google = oauth.register(
     authorize_url='https://accounts.google.com/o/oauth2/auth',
     authorize_params=None,
     api_base_url='https://www.googleapis.com/oauth2/v1/',
-    userinfo_endpoint='https://openidconnect.googleapis.com/v1/userinfo',  # This is only needed if using openId to fetch user info
+    userinfo_endpoint='https://openidconnect.googleapis.com/v1/userinfo',
     client_kwargs={'scope': 'openid email profile'},
 )
+
 
 @app.route('/')
 def run():
@@ -40,6 +41,7 @@ def run():
     return render_template(
         "login.html",
     )
+
 
 @app.route('/login')
 def login():
@@ -82,7 +84,7 @@ def artist_search():
     else:
         artist_id = random.choice(artist)  # randomly choose an artist
 
-    if (isinstance(artist_id, int) or artist_id == ''):
+    if isinstance(artist_id, int) or artist_id == '':
         artist_id = random.choice(artist)  # randomly choose an artist
         song_info = spotify_api.get_song_info(artist_id)  # gets artist info as an array (random aritst)
         return render_template(
@@ -96,7 +98,7 @@ def artist_search():
     else:
         song_info = spotify_api.get_song_info(artist_id)  # gets artist info as an array (user picked aritst)
 
-        if (len(song_info) > 0):
+        if len(song_info) > 0:
             artist_len = len(song_info[0])
         else:
             artist_len = 0
@@ -122,6 +124,7 @@ def lyrics(song_name, artist_name):
     return {
         'Lyrics': lyrics
     }
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0')
