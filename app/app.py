@@ -36,10 +36,7 @@ google = oauth.register(
 
 @app.route('/')
 def run():
-    try:
-        email = dict(session)['profile']
-    except:
-        email = None
+    session['is_authorized'] = False
     return render_template(
         "login.html",
     )
@@ -60,6 +57,7 @@ def authorize():
     user = oauth.google.userinfo()  # uses openid endpoint to fetch user info
     # Here you use the profile/user data that you got and query your database find/register the user
     # and set ur own data in the session not the profile from google
+    session['is_authorized'] = True
     session['profile'] = user_info
     session.permanent = True  # make the session permanant so it keeps existing after broweser gets closed
     return redirect('/artist')
@@ -74,6 +72,9 @@ def logout():
 
 @app.route('/artist', methods=["GET", "POST"])
 def artist_search():
+    if not session.get('is_authorized'):
+        return redirect('/')
+
     if request.method == "POST":
         name = request.form.get("a_name")  # get's artist name form html form
         artist_id = spotify_api.get_artist_id(name)  # pass in artist name and gets artist id
