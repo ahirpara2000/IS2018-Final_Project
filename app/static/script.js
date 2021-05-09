@@ -285,6 +285,12 @@ window.onload = () => {
             background.style.filter = 'none';
     });
 
+    var favbtn = document.getElementById("fav_btn");
+
+    favbtn.addEventListener("click", function (){
+       this.style.color = 'gold';
+    });
+
     var closebtns = document.getElementById("close_err");
 
     closebtns.addEventListener("click", function() {

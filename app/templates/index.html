@@ -5,6 +5,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="/static/style.css" media="screen"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <script type="text/javascript" src="/static/script.js"></script>
         <title>Spotipy</title>
 	</head>
@@ -53,13 +54,16 @@
 				</div>
 			</div>
 			<div class="lyrics_box" id="lyrics_box">
+                <span class="fa fa-star" id="fav_btn"></span>
 				<span class="close" id="close">&times;</span>
 				<br>
 				<div class="box3"><pre id="text" style="text-align:left font-size: 13px"></pre></div>
 				<br>
 				<div class="box2"><img id="image_box" style="border-radius: 25px" src="" width="300" height="300"></div>
 				<br>
-				<div class="box1"><h id="song_box" style="font-size:35px"></h></div>
+				<div class="box1">
+                    <h id="song_box" style="font-size:35px"></h>
+                </div>
 				<br>
 				<div class="box4"><span id="artist_box"></span></div>
 				<br>
@@ -69,7 +73,6 @@
 			<div id="loader">
 				<img src="{{url_for('static', filename='images/loader.gif')}}" style="border-radius: 25px" width="80" height="80"></img>
 			</div>
-
 			<div class="err_box" id="err_box">
 				<span class="close" id="close_err">&times;</span>
 				<b id="err_msg" style="font-size:40px">

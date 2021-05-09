@@ -271,3 +271,20 @@ input[type=submit]:hover {
 }
 
 ::-webkit-scrollbar-corner {background-color: black;}
+
+.fa {
+  cursor: pointer;
+  font-size: 10px;
+  position: absolute;
+  top: 10%;
+  left: 5%;
+  padding: 0px 15px;
+  transform: translate(0%, -50%);
+  color: white;
+  user-select: none;
+  transition: 100ms ease-in;
+}
+
+.fa:hover {
+  transform: scale(1.08);
+}
