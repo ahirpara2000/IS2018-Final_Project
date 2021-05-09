@@ -71,6 +71,17 @@ def authorize():
     # Here you use the profile/user data that you got and query your database find/register the user
     # and set ur own data in the session not the profile from google
     session['is_authorized'] = True
+    session['curr_user'] = user_info['id']
+
+    cursor = mysql.get_db().cursor()
+    cursor.execute('SELECT * FROM userData WHERE user_id=%s', user_info['id'])
+    num_rows = cursor.rowcount
+
+    if num_rows == 0:
+        inputData = (user_info['id'], user_info['given_name'], user_info['family_name'])
+        sql_insert_query = """INSERT INTO userData (user_id,first_name,last_name) VALUES (%s, %s,%s) """
+        cursor.execute(sql_insert_query, inputData)
+        mysql.get_db().commit()
 
     session.permanent = True  # make the session permanant so it keeps existing after broweser gets closed
     return redirect('/artist')
@@ -88,10 +99,6 @@ def artist_search():
     if not session.get('is_authorized'):
         return redirect('/')
 
-    cursor = mysql.get_db().cursor()
-    cursor.execute('SELECT * FROM userData')
-    result = cursor.fetchall()
-
     if request.method == "POST":
         name = request.form.get("a_name")  # get's artist name form html form
         artist_id = spotify_api.get_artist_id(name)  # pass in artist name and gets artist id
@@ -108,8 +115,7 @@ def artist_search():
             len=len(song_info),  # array length
             len2=len(song_info[0]),  # array length for artists
             song_info=song_info,  # array
-            artist_name=spotify_api.get_artist(artist_id), # gets artist's name
-            user_info=session.get('profile')
+            artist_name=spotify_api.get_artist(artist_id)
         )
     else:
         song_info = spotify_api.get_song_info(artist_id)  # gets artist info as an array (user picked aritst)
@@ -124,8 +130,7 @@ def artist_search():
             len=len(song_info),  # array length
             len2=artist_len,  # array length for artists
             song_info=song_info,  # array
-            artist_name=spotify_api.get_artist(artist_id),  # gets artist's name
-            user_info=session.get('profile')
+            artist_name=spotify_api.get_artist(artist_id)
         )
 
 
