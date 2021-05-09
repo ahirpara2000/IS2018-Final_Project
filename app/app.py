@@ -4,7 +4,9 @@ from dotenv import load_dotenv, find_dotenv
 import random
 import spotify_api
 import os
+from flaskext.mysql import MySQL
 from datetime import timedelta
+from pymysql.cursors import DictCursor
 
 load_dotenv(find_dotenv())
 
@@ -19,6 +21,15 @@ artist = ['4YRxDV8wJFPHPTeXepOstw',
 app.secret_key = os.getenv('secret_key')
 app.config['SESSION_COOKIE_NAME'] = 'google-login-session'
 app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes=5)
+
+mysql = MySQL(cursorclass=DictCursor)
+
+app.config['MYSQL_DATABASE_HOST'] = 'db'
+app.config['MYSQL_DATABASE_USER'] = 'root'
+app.config['MYSQL_DATABASE_PASSWORD'] = 'root'
+app.config['MYSQL_DATABASE_PORT'] = 3306
+app.config['MYSQL_DATABASE_DB'] = 'favoritesData'
+mysql.init_app(app)
 
 oauth = OAuth(app)
 google = oauth.register(
@@ -60,7 +71,7 @@ def authorize():
     # Here you use the profile/user data that you got and query your database find/register the user
     # and set ur own data in the session not the profile from google
     session['is_authorized'] = True
-    session['profile'] = user_info
+
     session.permanent = True  # make the session permanant so it keeps existing after broweser gets closed
     return redirect('/artist')
 
@@ -76,6 +87,10 @@ def logout():
 def artist_search():
     if not session.get('is_authorized'):
         return redirect('/')
+
+    cursor = mysql.get_db().cursor()
+    cursor.execute('SELECT * FROM userData')
+    result = cursor.fetchall()
 
     if request.method == "POST":
         name = request.form.get("a_name")  # get's artist name form html form
@@ -93,7 +108,8 @@ def artist_search():
             len=len(song_info),  # array length
             len2=len(song_info[0]),  # array length for artists
             song_info=song_info,  # array
-            artist_name=spotify_api.get_artist(artist_id)  # gets artist's name
+            artist_name=spotify_api.get_artist(artist_id), # gets artist's name
+            user_info=session.get('profile')
         )
     else:
         song_info = spotify_api.get_song_info(artist_id)  # gets artist info as an array (user picked aritst)
@@ -108,14 +124,14 @@ def artist_search():
             len=len(song_info),  # array length
             len2=artist_len,  # array length for artists
             song_info=song_info,  # array
-            artist_name=spotify_api.get_artist(artist_id)  # gets artist's name
+            artist_name=spotify_api.get_artist(artist_id),  # gets artist's name
+            user_info=session.get('profile')
         )
 
 
 @app.route('/lyrics/<song_name>/<artist_name>')
 def lyrics(song_name, artist_name):
     artist_name = artist_name[14:]
-    print(artist_name)
     try:
         lyrics = spotify_api.get_lyrics(song_name, artist_name)
     except:
