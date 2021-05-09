@@ -142,9 +142,18 @@ def favourite():
 
     cursor = mysql.get_db().cursor()
     cursor.execute('SELECT * FROM favorits WHERE user_id=%s', session.get('curr_user'))
-    result = cursor.fetchall()
-
-    return render_template('favourite.html', song_info=result)
+    results = cursor.fetchall()
+    song_info = []
+    print(results)
+    for song in results:
+        temp = []
+        temp.append(song['artist_name'])
+        temp.append(song['song_name'])
+        temp.append(song['song_link'])
+        temp.append(song['song_image'])
+        song_info.append(temp)
+    print(song_info)
+    return render_template('favourite.html', song_info=song_info, len=len(song_info))
 
 @app.route('/lyrics/<song_name>/<artist_name>')
 def lyrics(song_name, artist_name):
