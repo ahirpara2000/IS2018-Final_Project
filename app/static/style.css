@@ -76,6 +76,7 @@ input[type=submit]:hover {
 
 .tabf {
   font-family: Calibri;
+  position: relative;
   font-size: 20px;
   color: white;
   display: inline;
@@ -287,6 +288,12 @@ input[type=submit]:hover {
 
 .fa:hover {
   color: darkgoldenrod;
+}
+
+.remove.fa {
+  position: absolute;
+  top: 60%;
+  left: 2%;
 }
 
 .notifyBox{
