@@ -167,13 +167,6 @@ def add_to_fav(data):
         cursor.execute(sql_insert_query, inputData)
         mysql.get_db().commit()
 
-        cursor.execute('SELECT * FROM favorits')
-        result = cursor.fetchall()
-
-        print(result)
-
-        print(selected_song)
-
     return '200'
 
 if __name__ == '__main__':
