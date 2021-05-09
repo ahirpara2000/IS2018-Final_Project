@@ -143,16 +143,19 @@ def favourite():
     cursor = mysql.get_db().cursor()
     cursor.execute('SELECT * FROM favorits WHERE user_id=%s', session.get('curr_user'))
     results = cursor.fetchall()
+
+    global song_info
     song_info = []
-    print(results)
+
     for song in results:
         temp = []
         temp.append(song['artist_name'])
         temp.append(song['song_name'])
         temp.append(song['song_link'])
         temp.append(song['song_image'])
+        temp.append(song['id'])
         song_info.append(temp)
-    print(song_info)
+
     return render_template('favourite.html', song_info=song_info, len=len(song_info))
 
 @app.route('/lyrics/<song_name>/<artist_name>')
@@ -188,6 +191,18 @@ def add_to_fav(data):
 
         cursor.execute(sql_insert_query, inputData)
         mysql.get_db().commit()
+
+    return '200'
+
+@app.route('/removetofav/<data>')
+def remove_to_fav(data):
+    global song_info
+    id = song_info[int(data)][4]
+
+    cursor = mysql.get_db().cursor()
+    sql_delete_query = 'DELETE FROM favorits WHERE id = {0} '.format(id)
+    cursor.execute(sql_delete_query)
+    mysql.get_db().commit()
 
     return '200'
 

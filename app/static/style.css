@@ -290,12 +290,6 @@ input[type=submit]:hover {
   color: darkgoldenrod;
 }
 
-.remove.fa {
-  position: absolute;
-  top: 60%;
-  left: 2%;
-}
-
 .notifyBox{
   color: white;
   position: fixed;
