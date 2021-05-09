@@ -106,6 +106,8 @@ def artist_search():
     else:
         artist_id = random.choice(artist)  # randomly choose an artist
 
+    global song_info
+
     if isinstance(artist_id, int) or artist_id == '':
         artist_id = random.choice(artist)  # randomly choose an artist
         song_info = spotify_api.get_song_info(artist_id)  # gets artist info as an array (random aritst)
@@ -146,6 +148,12 @@ def lyrics(song_name, artist_name):
         'Lyrics': lyrics
     }
 
+@app.route('/addtofav/<data>')
+def add_to_fav(data):
+    global song_info
+    data = int(data)
+
+    selected_song = song_info[int(data)]
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0')

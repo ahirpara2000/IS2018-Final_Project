@@ -87,6 +87,13 @@ function alertUser()
     }
 }
 
+let selected_tab;
+let song_name;
+let artist_name;
+let song_image;
+let song_audio;
+let artist_list;
+
 window.onload = () => {
     alertUser();
     let tab = document.getElementById('tabf0');
@@ -96,11 +103,12 @@ window.onload = () => {
 
             if(!checkAddon())
             {
-                var song_name = document.getElementById("name0").innerHTML;
-                var artist_name = document.getElementById("artist_name").innerHTML;
-                var song_image = document.getElementById("image0").src;
-                var song_audio = document.getElementById("audio0").src;
-                var artist_list = document.getElementById("name_list0").innerHTML;
+                song_name = document.getElementById("name0").innerHTML;
+                artist_name = document.getElementById("artist_name").innerHTML;
+                song_image = document.getElementById("image0").src;
+                song_audio = document.getElementById("audio0").src;
+                artist_list = document.getElementById("name_list0").innerHTML;
+                selected_tab = 0;
                 showLoader();
                 sendReq(song_name, artist_name, song_image, song_audio, artist_list);
             }
@@ -114,11 +122,12 @@ window.onload = () => {
 
             if(!checkAddon())
             {
-                var song_name = document.getElementById("name1").innerHTML;
-                var artist_name = document.getElementById("artist_name").innerHTML;
-                var song_image = document.getElementById("image1").src;
-                var song_audio = document.getElementById("audio1").src;
-                var artist_list = document.getElementById("name_list1").innerHTML;
+                song_name = document.getElementById("name1").innerHTML;
+                artist_name = document.getElementById("artist_name").innerHTML;
+                ong_image = document.getElementById("image1").src;
+                song_audio = document.getElementById("audio1").src;
+                artist_list = document.getElementById("name_list1").innerHTML;
+                selected_tab = 1;
                 showLoader();
                 sendReq(song_name, artist_name, song_image, song_audio, artist_list);
             }
@@ -133,11 +142,12 @@ window.onload = () => {
 
             if(!checkAddon())
             {
-                var song_name = document.getElementById("name2").innerHTML;
-                var artist_name = document.getElementById("artist_name").innerHTML;
-                var song_image = document.getElementById("image2").src;
-                var song_audio = document.getElementById("audio2").src;
-                var artist_list = document.getElementById("name_list2").innerHTML;
+                song_name = document.getElementById("name2").innerHTML;
+                artist_name = document.getElementById("artist_name").innerHTML;
+                song_image = document.getElementById("image2").src;
+                song_audio = document.getElementById("audio2").src;
+                artist_list = document.getElementById("name_list2").innerHTML;
+                selected_tab = 2;
                 showLoader();
                 sendReq(song_name, artist_name, song_image, song_audio, artist_list);
             }
@@ -152,11 +162,12 @@ window.onload = () => {
 
             if(!checkAddon())
             {
-                var song_name = document.getElementById("name3").innerHTML;
-                var artist_name = document.getElementById("artist_name").innerHTML;
-                var song_image = document.getElementById("image3").src;
-                var song_audio = document.getElementById("audio3").src;
-                var artist_list = document.getElementById("name_list3").innerHTML;
+                song_name = document.getElementById("name3").innerHTML;
+                artist_name = document.getElementById("artist_name").innerHTML;
+                song_image = document.getElementById("image3").src;
+                song_audio = document.getElementById("audio3").src;
+                artist_list = document.getElementById("name_list3").innerHTML;
+                selected_tab = 4;
                 showLoader();
                 sendReq(song_name, artist_name, song_image, song_audio, artist_list);
             }
@@ -170,11 +181,12 @@ window.onload = () => {
         tab.addEventListener('click', () => {
             if(!checkAddon())
             {
-                var song_name = document.getElementById("name4").innerHTML;
-                var artist_name = document.getElementById("artist_name").innerHTML;
-                var song_image = document.getElementById("image4").src;
-                var song_audio = document.getElementById("audio4").src;
-                var artist_list = document.getElementById("name_list4").innerHTML;
+                song_name = document.getElementById("name4").innerHTML;
+                artist_name = document.getElementById("artist_name").innerHTML;
+                song_image = document.getElementById("image4").src;
+                song_audio = document.getElementById("audio4").src;
+                artist_list = document.getElementById("name_list4").innerHTML;
+                selected_tab = 4;
                 showLoader();
                 sendReq(song_name, artist_name, song_image, song_audio, artist_list);
             }
@@ -188,11 +200,12 @@ window.onload = () => {
 
             if(!checkAddon())
             {
-                var song_name = document.getElementById("name5").innerHTML;
-                var artist_name = document.getElementById("artist_name").innerHTML;
-                var song_image = document.getElementById("image5").src;
-                var song_audio = document.getElementById("audio5").src;
-                var artist_list = document.getElementById("name_list5").innerHTML;
+                song_name = document.getElementById("name5").innerHTML;
+                artist_name = document.getElementById("artist_name").innerHTML;
+                song_image = document.getElementById("image5").src;
+                song_audio = document.getElementById("audio5").src;
+                artist_list = document.getElementById("name_list5").innerHTML;
+                selected_tab = 5;
                 showLoader();
                 sendReq(song_name, artist_name, song_image, song_audio, artist_list);
             }
@@ -207,11 +220,12 @@ window.onload = () => {
 
             if(!checkAddon())
             {
-                var song_name = document.getElementById("name6").innerHTML;
-                var artist_name = document.getElementById("artist_name").innerHTML;
-                var song_image = document.getElementById("image6").src;
-                var song_audio = document.getElementById("audio6").src;
-                var artist_list = document.getElementById("name_list6").innerHTML;
+                song_name = document.getElementById("name6").innerHTML;
+                artist_name = document.getElementById("artist_name").innerHTML;
+                song_image = document.getElementById("image6").src;
+                song_audio = document.getElementById("audio6").src;
+                artist_list = document.getElementById("name_list6").innerHTML;
+                selected_tab = 6;
                 showLoader();
                 sendReq(song_name, artist_name, song_image, song_audio, artist_list);
             }
@@ -226,11 +240,12 @@ window.onload = () => {
 
             if(!checkAddon())
             {
-                var song_name = document.getElementById("name7").innerHTML;
-                var artist_name = document.getElementById("artist_name").innerHTML;
-                var song_image = document.getElementById("image7").src;
-                var song_audio = document.getElementById("audio7").src;
-                var artist_list = document.getElementById("name_list7").innerHTML;
+                song_name = document.getElementById("name7").innerHTML;
+                artist_name = document.getElementById("artist_name").innerHTML;
+                song_image = document.getElementById("image7").src;
+                song_audio = document.getElementById("audio7").src;
+                artist_list = document.getElementById("name_list7").innerHTML;
+                selected_tab = 7;
                 showLoader();
                 sendReq(song_name, artist_name, song_image, song_audio, artist_list);
             }
@@ -245,11 +260,12 @@ window.onload = () => {
 
             if(!checkAddon())
             {
-                var song_name = document.getElementById("name8").innerHTML;
-                var artist_name = document.getElementById("artist_name").innerHTML;
-                var song_image = document.getElementById("image8").src;
-                var song_audio = document.getElementById("audio8").src;
-                var artist_list = document.getElementById("name_list8").innerHTML;
+                song_name = document.getElementById("name8").innerHTML;
+                artist_name = document.getElementById("artist_name").innerHTML;
+                song_image = document.getElementById("image8").src;
+                song_audio = document.getElementById("audio8").src;
+                artist_list = document.getElementById("name_list8").innerHTML;
+                selected_tab = 8;
                 showLoader();
                 sendReq(song_name, artist_name, song_image, song_audio, artist_list);
             }
@@ -265,11 +281,12 @@ window.onload = () => {
 
             if(!checkAddon())
             {
-                var song_name = document.getElementById("name9").innerHTML;
-                var artist_name = document.getElementById("artist_name").innerHTML;
-                var song_image = document.getElementById("image9").src;
-                var song_audio = document.getElementById("audio9").src;
-                var artist_list = document.getElementById("name_list9").innerHTML;
+                song_name = document.getElementById("name9").innerHTML;
+                artist_name = document.getElementById("artist_name").innerHTML;
+                song_image = document.getElementById("image9").src;
+                song_audio = document.getElementById("audio9").src;
+                artist_list = document.getElementById("name_list9").innerHTML;
+                selected_tab = 9;
                 showLoader();
                 sendReq(song_name, artist_name, song_image, song_audio, artist_list);
             }
@@ -288,7 +305,10 @@ window.onload = () => {
     var favbtn = document.getElementById("fav_btn");
 
     favbtn.addEventListener("click", function (){
-       this.style.color = 'gold';
+        this.style.color = 'gold';
+
+        const url = '/addtofav/' + selected_tab;
+        window.fetch(url);
     });
 
     var closebtns = document.getElementById("close_err");
