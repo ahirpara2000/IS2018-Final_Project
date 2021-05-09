@@ -302,21 +302,31 @@ window.onload = () => {
             background.style.filter = 'none';
     });
 
-    var favbtn = document.getElementById("fav_btn");
-
-    favbtn.addEventListener("click", function (){
-        this.style.color = 'gold';
-
-        const url = '/addtofav/' + selected_tab;
-        window.fetch(url);
-    });
-
     var closebtns = document.getElementById("close_err");
 
     closebtns.addEventListener("click", function() {
         this.parentElement.style.display = 'none';
         let background = document.getElementById("lyrics_bg");
             background.style.filter = 'none';
+    });
+
+    var closebtns = document.getElementById("close_msg");
+
+    closebtns.addEventListener("click", function() {
+        this.parentElement.style.display = 'none';
+        let background = document.getElementById("lyrics_bg");
+            background.style.filter = 'none';
+    });
+
+    var favbtn = document.getElementById("fav_btn");
+
+    favbtn.addEventListener("click", function (){
+        const url = '/addtofav/' + selected_tab;
+        window.fetch(url).then(response => response.json())
+        .then(data => {
+            let success_msg = document.getElementById('notifyBox');
+            success_msg.style.display = 'block';
+        });
     });
 
 };
