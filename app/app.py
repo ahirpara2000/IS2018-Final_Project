@@ -135,6 +135,16 @@ def artist_search():
             artist_name=spotify_api.get_artist(artist_id)
         )
 
+@app.route('/favourite')
+def favourite():
+    if not session.get('is_authorized'):
+        return redirect('/')
+
+    cursor = mysql.get_db().cursor()
+    cursor.execute('SELECT * FROM favorits WHERE user_id=%s', session.get('curr_user'))
+    result = cursor.fetchall()
+
+    return render_template('favourite.html', song_info=result)
 
 @app.route('/lyrics/<song_name>/<artist_name>')
 def lyrics(song_name, artist_name):
