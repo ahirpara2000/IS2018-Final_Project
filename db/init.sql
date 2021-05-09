@@ -15,8 +15,8 @@ CREATE TABLE favorits (
   `id` int AUTO_INCREMENT,
   `user_id` VARCHAR(30),
   `song_name` VARCHAR(255),
-  `song_link` VARCHAR(512) CHARACTER SET 'ascii' COLLATE 'ascii_general_ci' NOT NULL,
-  `song_image` VARCHAR(512) CHARACTER SET 'ascii' COLLATE 'ascii_general_ci' NOT NULL,
+  `song_link` VARCHAR(512) CHARACTER SET 'ascii' COLLATE 'ascii_general_ci',
+  `song_image` VARCHAR(512) CHARACTER SET 'ascii' COLLATE 'ascii_general_ci',
   `artist_name` varchar(255),
   PRIMARY KEY (`id`),
   FOREIGN KEY (`user_id`) REFERENCES userData(`user_id`)

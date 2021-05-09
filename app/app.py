@@ -148,6 +148,7 @@ def lyrics(song_name, artist_name):
         'Lyrics': lyrics
     }
 
+
 @app.route('/addtofav/<data>')
 def add_to_fav(data):
     global song_info
@@ -157,17 +158,20 @@ def add_to_fav(data):
 
     cursor = mysql.get_db().cursor()
 
-    cursor.execute('SELECT * FROM favorits WHERE user_id=%s AND song_name=%s', (session.get('curr_user'), selected_song[1]))
+    cursor.execute('SELECT * FROM favorits WHERE user_id=%s AND song_name=%s',
+                   (session.get('curr_user'), selected_song[1]))
     num_rows = cursor.rowcount
 
     if num_rows == 0:
-        inputData = (session.get('curr_user'), selected_song[1], selected_song[2], selected_song[3], selected_song[0][0])
+        inputData = (
+            session.get('curr_user'), selected_song[1], selected_song[2], selected_song[3], selected_song[0][0])
         sql_insert_query = """INSERT INTO favorits (user_id,song_name,song_link, song_image, artist_name) VALUES (%s, %s,%s, %s ,%s) """
 
         cursor.execute(sql_insert_query, inputData)
         mysql.get_db().commit()
 
     return '200'
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0')
