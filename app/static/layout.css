@@ -1,0 +1,22 @@
+.navbar {
+    display: flex;
+    position: fixed;
+    z-index: 1;
+    width: 100%;
+    background: white;
+}
+
+ul {
+    list-style-type: none;
+    display: flex;
+    width: 50%;
+    justify-content: space-around;
+}
+
+li a {
+    text-decoration: none;
+}
+
+.container {
+    padding-top: 3em;
+}
