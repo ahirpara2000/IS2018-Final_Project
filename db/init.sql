@@ -8,9 +8,6 @@ CREATE TABLE userData (
   PRIMARY KEY (`user_id`)
 );
 
-INSERT INTO userData (user_id,first_name,last_name) VALUES
-    ('109613092934114349003', 'Aman', 'Hirpara');
-
 CREATE TABLE favorits (
   `id` int AUTO_INCREMENT,
   `user_id` VARCHAR(30),
@@ -22,5 +19,3 @@ CREATE TABLE favorits (
   FOREIGN KEY (`user_id`) REFERENCES userData(`user_id`)
 );
 
-INSERT INTO favorits (user_id,song_name,song_link, song_image, artist_name) VALUES
-    ('109613092934114349003', 'Khairiyat', 'https://p.scdn.co/mp3-preview/675f140e389a20b604070b22ea03d1bfefa70200?cid=ddec4b5bf0dc4e2890a68cf1fbd2adf2','https://i.scdn.co/image/ab67616d0000b273eaa6b4bfb5954ee5a5a8ce9e', 'Arijit Singh');

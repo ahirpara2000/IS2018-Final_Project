@@ -63,13 +63,11 @@ def login():
 
 @app.route('/authorize')
 def authorize():
-    google = oauth.create_client('google')  # create the google oauth client
-    token = google.authorize_access_token()  # Access token from google (needed to get user info)
-    resp = google.get('userinfo')  # userinfo contains stuff u specificed in the scrope
+    google = oauth.create_client('google')
+    token = google.authorize_access_token()
+    resp = google.get('userinfo')
     user_info = resp.json()
-    user = oauth.google.userinfo()  # uses openid endpoint to fetch user info
-    # Here you use the profile/user data that you got and query your database find/register the user
-    # and set ur own data in the session not the profile from google
+    user = oauth.google.userinfo()
     session['is_authorized'] = True
     session['curr_user'] = user_info['id']
 
@@ -83,8 +81,8 @@ def authorize():
         cursor.execute(sql_insert_query, inputData)
         mysql.get_db().commit()
 
-    session.permanent = True  # make the session permanant so it keeps existing after broweser gets closed
-    return redirect('/artist')
+    session.permanent = True
+    return redirect('/home')
 
 
 @app.route('/logout')
@@ -94,7 +92,7 @@ def logout():
     return redirect('/')
 
 
-@app.route('/artist', methods=["GET", "POST"])
+@app.route('/home', methods=["GET", "POST"])
 def artist_search():
     if not session.get('is_authorized'):
         return redirect('/')
@@ -135,6 +133,7 @@ def artist_search():
             artist_name=spotify_api.get_artist(artist_id)
         )
 
+
 @app.route('/favourite')
 def favourite():
     if not session.get('is_authorized'):
@@ -157,6 +156,7 @@ def favourite():
         song_info.append(temp)
 
     return render_template('favourite.html', song_info=song_info, len=len(song_info))
+
 
 @app.route('/lyrics/<song_name>/<artist_name>')
 def lyrics(song_name, artist_name):
@@ -193,6 +193,7 @@ def add_to_fav(data):
         mysql.get_db().commit()
 
     return '200'
+
 
 @app.route('/removetofav/<data>')
 def remove_to_fav(data):
