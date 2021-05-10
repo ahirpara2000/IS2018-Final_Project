@@ -26,6 +26,20 @@ User can also add their favourite track by logging in via Google login.
   pip install -r requirements.txt
  ```
 
+**1. Installation for pycharm and dockers**
+
+  * *Click on add Configuration*
+  
+  * *Add a new Configuration*
+  
+  * *Go to dockers and select Docker-compose*
+  
+  * *Select given ```docker-compose.yml``` file as Compose file*
+  
+  * *(Optional)*
+    + *Select ```--build, force build images```*
+    + *Select ```--volumes, remove volumes on down```*
+
 **2. setup dotenv**
   * *Create a `.env` file in the project directory containing Client id and Client secret in following format:*
 
@@ -40,7 +54,12 @@ export secret_key = "generate some random string"
 
 ## Run Application
 
-1. Open up terminal and run command ```python spotify_app.py```
-2. Open a new tab in browser and go to 'http://localhost:5000/'
+1. Open up terminal and run command ```python spotify_app.py``` 
+3. Open a new tab in browser and go to 'http://localhost:5000/'
+
+**Pycharm and Dockers**
+
+1. Click on the green play button on top right, to build and run docker component.
+2. Once running, go to 'http://localhost:5000/' in a browser tab.
 
 *(Disclaimer: If you are using Grammarly extension in your browser, the app may not work properly. Please open the page in incognito tab or disable Grammarly for the website.)*
