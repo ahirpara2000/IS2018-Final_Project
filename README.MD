@@ -16,3 +16,24 @@ User can also add their favourite track by logging in via Google login.
  ### 3. [Google OAuth 2.0](https://developers.google.com/identity/protocols/oauth2)
 
   + *Google OAuth 2.0 is used to implement google login (which means users can login via their google accounts)*
+
+
+## Setup and Installation
+**1. Installation**
+ * *run following code in terminal to install all the required libraries:*
+
+```bash
+  pip install -r requirements.txt
+ ```
+
+**4. setup dotenv**
+  * *Create a `.env` file in the project directory containing Client id and Client secret in following format:*
+
+```
+export sptfy_id = "your spotify client id"
+export sptfy_sectret = "your spotify client secret"
+export genius_token = "your genius api access token"
+export GOOGLE_CLIENT_ID = "your google oAuth cliend id"
+export GOOGLE_CLIENT_SECRET = "your google oAuth client secret"
+export secret_key = "generate some random string"
+```
