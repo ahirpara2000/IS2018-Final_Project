@@ -19,14 +19,13 @@ User can also add their favourite track by logging in via Google login.
 
 
 ## Setup and Installation
-**1. Installation**
- * *run following code in terminal to install all the required libraries:*
 
-```bash
-  pip install -r requirements.txt
- ```
+**1. Pre-Requisites**
+  1. *Windows 10 Pro, Windows 10 Education Edition, MacOS*
+  2. *PyCharm Pro Installed*
+  3. *Docker Desktop Installed*
 
-**1. Installation for pycharm and dockers**
+**2. Installation for pycharm and dockers**
 
   * *Click on add Configuration*
   
@@ -40,7 +39,7 @@ User can also add their favourite track by logging in via Google login.
     + *Select ```--build, force build images```*
     + *Select ```--volumes, remove volumes on down```*
 
-**2. setup dotenv**
+**3. setup dotenv**
   * *Create a `.env` file in the project directory containing Client id and Client secret in following format:*
 
 ```
@@ -54,12 +53,12 @@ export secret_key = "generate some random string"
 
 ## Run Application
 
-1. Open up terminal and run command ```python spotify_app.py``` 
-3. Open a new tab in browser and go to 'http://localhost:5000/'
-
 **Pycharm and Dockers**
 
 1. Click on the green play button on top right, to build and run docker component.
 2. Once running, go to 'http://localhost:5000/' in a browser tab.
+
+
+-- Incase of error that says Dockers container already exists, you can go to ```docker-compose.yml``` and change ```container_name``` for both app and db.
 
 *(Disclaimer: If you are using Grammarly extension in your browser, the app may not work properly. Please open the page in incognito tab or disable Grammarly for the website.)*
