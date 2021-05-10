@@ -26,7 +26,7 @@ User can also add their favourite track by logging in via Google login.
   pip install -r requirements.txt
  ```
 
-**4. setup dotenv**
+**2. setup dotenv**
   * *Create a `.env` file in the project directory containing Client id and Client secret in following format:*
 
 ```
