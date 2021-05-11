@@ -68,4 +68,9 @@ export secret_key = "generate some random string"
 3. Use of genius API to get lyrics for each song.
 4. Local database to store user's favorite songs.
 
+## Issues
+
+1. Some of the tracks received from spotify API doesnot have a song preview URL.
+2. Some of the tracks don't have lyrics on Genius.
+
 *(Disclaimer: If you are using Grammarly extension in your browser, the app may not work properly. Please open the page in incognito tab or disable Grammarly for the website.)*
