@@ -61,4 +61,11 @@ export secret_key = "generate some random string"
 
 -- Incase of error that says Dockers container already exists, you can go to ```docker-compose.yml``` and change ```container_name``` for both app and db.
 
+## Features
+
+1. Google login and authentication.
+2. Use of Spotify API to look up the top 10 tracks of any artist.
+3. Use of genius API to get lyrics for each song.
+4. Local database to store user's favorite songs.
+
 *(Disclaimer: If you are using Grammarly extension in your browser, the app may not work properly. Please open the page in incognito tab or disable Grammarly for the website.)*
